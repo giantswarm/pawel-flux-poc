@@ -6,12 +6,10 @@ spec:
   validationFailureAction: enforce
   rules:
     - name: serviceAccountName
-      exclude:
-        resources:
-          namespaces:
-            - flux-system
       match:
         resources:
+          namespaces:
+            - "org-*"
           kinds:
             - Kustomization
             - HelmRelease
@@ -21,12 +19,10 @@ spec:
           spec:
             serviceAccountName: "?*"
     - name: sourceRefNamespace
-      exclude:
-        resources:
-          namespaces:
-            - flux-system
       match:
         resources:
+          namespaces:
+            - "org-*"
           kinds:
             - Kustomization
             - HelmRelease
