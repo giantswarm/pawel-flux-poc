@@ -6,7 +6,7 @@ metadata:
   namespace: org-a
 roleRef:
   apiGroup: rbac.authorization.k8s.io
-  kind: Role
+  kind: ClusterRole
   name: edit
 subjects:
 - kind: ServiceAccount
@@ -19,7 +19,7 @@ metadata:
   namespace: org-b
 roleRef:
   apiGroup: rbac.authorization.k8s.io
-  kind: Role
+  kind: ClusterRole
   name: edit
 subjects:
 - kind: ServiceAccount
