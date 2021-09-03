@@ -12,6 +12,7 @@ spec:
             - "giantswarm"
             - "monitoring"
       match:
+        resources:
           kinds:
             - Kustomization
             - HelmRelease
@@ -27,6 +28,7 @@ spec:
             - "giantswarm"
             - "monitoring"
       match:
+        resources:
           kinds:
             - Kustomization
             - HelmRelease
