@@ -24,10 +24,14 @@ Create namespace first:
 kubectl --context="kind-kind" create ns "flux-system"
 ```
 
-And install the app:
+Clone the flux-app repository:
 ```bash
 rm -rf /tmp/giantswarm-flux-app-repo
 git clone https://github.com/giantswarm/flux-app /tmp/giantswarm-flux-app-repo
+```
+
+And install the app:
+```bash
 helm --kube-context="kind-kind" install -n "flux-system" "flux-app" \
 	/tmp/giantswarm-flux-app-repo/helm/flux-app
 ```
