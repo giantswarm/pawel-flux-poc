@@ -49,7 +49,7 @@ flux --context="kind-kind" --namespace="flux-system" \
 	--branch="main"
 ```
 
-Create kustomization from path `webhook` to deploy `kyverno` with policies:
+Create kustomization from path [webhook](/webhook) to deploy `kyverno` with policies:
 ```bash 
 flux --context="kind-kind" --namespace="flux-system" \
 	create kustomization "webhook" \
@@ -69,7 +69,7 @@ flux --context="kind-kind" --namespace="default" \
 	--branch="main"
 ```
 
-Create (and fail) kustomization from path `universe` :
+Create (and fail) kustomization from path [universe](/universe) :
 ```bash
 flux --context="kind-kind" --namespace="default" \
 	create kustomization universe \
@@ -98,7 +98,7 @@ Let's create `automation` Service Account in the default namespace as we have in
 kubectl --context="kind-kind" --namespace="default" create serviceaccount "automation"
 ```
 
-And try (and fail again) to create kustomization from path `universe` but with the `--service-account` flag set:
+And try (and fail again) to create kustomization from path [universe](/universe) but with the `--service-account` flag set:
 ```bash 
 flux --context="kind-kind" --namespace="default" \
 	create kustomization universe \
@@ -132,7 +132,7 @@ kubectl --context="kind-kind" --namespace="default" create clusterrolebinding \
 
 The step above would not exist in our MC setup because `automation` SA is maintained by `rbac-operator`.
 
-And try to create kustomization from path `universe` one more time:
+And try to create kustomization from path [universe](/universe) one more time:
 ```bash 
 flux --context="kind-kind" --namespace="default" \
 	create kustomization universe \
@@ -151,7 +151,7 @@ flux --context="kind-kind" --namespace="org-a" \
 	--branch="main"
 ```
 
-Try (and fail) creating app:
+Try (and fail) creating app from path [tenant/org-a](/tenant/org-a):
 ```bash
 flux --context="kind-kind" --namespace="org-a" \
 	create kustomization universe \
@@ -160,7 +160,7 @@ flux --context="kind-kind" --namespace="org-a" \
 	--prune=true
 ```
 
-This is again because `spec.serviceAccountName` is required but not set. Let's fix it and set the SA created with /universe/ which has /edit/ role bound:
+This is again because `spec.serviceAccountName` is required but not set. Let's fix it and set the SA created with _universe_ [which has _edit_ role bound](/universe/orgs-rbac.yaml#L12-L18):
 ```bash
 flux --context="kind-kind" --namespace="org-a" \
 	create kustomization universe \
@@ -184,7 +184,7 @@ from server for: "2014d9e1-538e-43ef-ae56-08c15415916b.yaml": configmaps "cm-fro
 
 This is expected. This is because it's trying to create a ConfigMap in the `orb-b` namespace and `created-from-universe` is not allowed to do that. *This is up to customer how they set that*, but this is one possible scenario, e.g. allowing kong admins to only mess with /kong/ organization.
 
-And you can check that the ConfigMap in `org-a` namespace is still created:
+And you can check that [the ConfigMap in `org-a` namespace](/tenant/org-a/cm.yaml#L1-L6) is still created:
 ```bash
 kubectl --context="kind-kind" --namespace="org-a" get configmap
 ```
