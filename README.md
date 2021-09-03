@@ -8,7 +8,7 @@ This is PoC flux setup for our customers. See https://github.com/giantswarm/gian
 * In our MC customers are not allowed to create namespaces directly. They need to create Organization CRs so the examples would need further adaptations be be used in real world.
 
 ## Steps
-*NOTE:* For each `flux create` command you can use `--export` flag to see what manifests it creates.
+**NOTE:** For each `flux create` command you can use `--export` flag to see what manifests it creates.
 
 ### 1. Setup flux
 After completing this section we should have flux running. It should be ready to be used by our customers without 
